@@ -1,0 +1,398 @@
+---
+title: "Fingerprint Data Frame"
+author: "Marta García"
+date: "July 9, 2017"
+output: html_document
+---
+### The data frame will have 6 columns:
+- participant name
+- question (number 1:10 and letter A-E)
+- treatment (one to one or one to many)
+- response per question (T/F, 1/0)
+- grade per question (T/F)
+- order of tests administered (1:10)
+
+### This code will create 10 data frames (one per participant) and then stack all 10 to create the final data frame.
+
+We will create a vector for question and for the solutions 
+and then reuse it per data frame since it is constant per person.
+```{r}
+# vector question will be used as column 2 in every data frame
+question <- c("1A", "1B", "1C", "1D", "1E",
+              "2A", "2B", "2C", "2D", "2E",
+              "3A", "3B", "3C", "3D", "3E",
+              "4A", "4B", "4C", "4D", "4E",
+              "5A", "5B", "5C", "5D", "5E",
+              "6A", "6B", "6C", "6D", "6E",
+              "7A", "7B", "7C", "7D", "7E",
+              "8A", "8B", "8C", "8D", "8E",
+              "9A", "9B", "9C", "9D", "9E",
+              "10A", "10B", "10C", "10D", "10E")
+
+# vector answer_key are the answers to questions
+# will run later again participant responses to see if participant answered question correctly
+answer_key <- c(0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0,
+                0, 0, 1, 0, 0,
+                0, 0, 0, 1, 0,
+                0, 1, 0, 0, 0,
+                0, 1, 1, 0, 0,
+                1, 0, 0, 0, 1,
+                1, 1, 0, 0, 1,
+                1, 0, 0, 1, 1,
+                1, 0, 1, 0, 1)
+length(answer_key)
+```
+### PARTICIPANT 1: Sarah Kline
+```{r}
+# participant_1 is col 1, participant name
+# rep() to repeat name 50 times
+participant_1 <- rep("Sarah Kline", 50)
+
+# treatment_1 is col 2, treatment level
+# rep() to repeat 5 times per test
+# length() = 50 since there are 50 entries
+treatment_1 <- rep(c("one to one", "one to many", "one to one",
+                 "one to one", "one to many", "one to one",
+                 "one to many", "one to many", "one to one",
+                 "one to many"), each = 5)
+length(treatment_1)
+
+# responses_1 is col 4, participant answer per question (1/0 for T/F)
+# if a participant answered that fingerprint is a match, input 1, otherwise 0
+# length() = 50 since there are 50 entries
+## values are placeholders until we get results
+responses_1 <- c(1, 0, 1, 0, 0,
+                 0, 1, 0, 0, 1,
+                 0, 0, 0, 1, 0,
+                 1, 0, 0, 1, 1,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 1,
+                 1, 1, 0, 0, 1,
+                 0, 0, 0, 1, 1,
+                 1, 0, 1, 1, 0)
+length(responses_1)
+
+# if a participant answered correctly, input 1, otherwise 0
+# length() = 50 since there are 50 entries
+## values are placeholders until we get results
+# grade_1 <- c(1, 0, 0, 1, 1,
+#              0, 0, 0, 0, 0,
+#              1, 1, 1, 0, 1,
+#              1, 0, 0, 1, 0,
+#              1, 0, 0, 1, 1,
+#              0, 0, 0, 1, 1,
+#              0, 0, 1, 1, 0,
+#              0, 1, 0, 1, 0,
+#              1, 1, 1, 1, 1,
+#              1, 1, 1, 0, 0)
+# length(grade_1)
+
+# grade_1 is col 5, participant grade per question (T/F)
+# set == and if participant answered correctly will output TRUE 
+grade_1 <- responses_1 == answer_key
+
+# order_1 is col 6, order of tests administered
+# rep() to repeat 5 times per test
+
+# 1,2,3,4,5,6,7,8,9,10
+# 9,1,3,6,4,8,7,5,10,2
+order_1 <- rep(c(2, 10, 3, 5, 8, 4, 7, 6, 1, 9), each = 5)
+
+# renaming col 1, 3:6
+# data.frame() to create dataframe of 6 columns
+# View() to check if sarah_df is correct
+sarah_df <- data.frame(participant = participant_1, 
+                       question, 
+                       treatment = treatment_1,
+                       response = responses_1,
+                       grade = grade_1,
+                       order = order_1)
+View(sarah_df)
+```
+### PARTICIPANT 2: Jake Howell
+```{r}
+participant_2 <- rep("Jake Howell", 50)
+
+treatment_2 <- rep(c("one to many", "one to one", "one to many",
+                     "one to many", "one to one", "one to many",
+                     "one to one", "one to one", "one to many",
+                     "one to one"), each = 5)
+
+responses_2 <- c(0, 0, 0, 1, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 1, 0, 0, 0, 0,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 1,
+                 0, 1, 0, 0, 1,
+                 0, 0, 0, 0, 0,
+                 1, 0, 1, 0, 1)
+length(responses_2)
+
+
+grade_2 <- responses_2 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 1,6,3,7,5,8,9,2,10,4
+order_2 <- rep(c(1, 8, 3, 10, 5, 2, 4, 6, 7, 9), each = 5)
+
+jake_df <- data.frame(participant = participant_2,
+                      question,
+                      treatment = treatment_2,
+                      response = responses_2,
+                      grade = grade_2,
+                      order = order_2)
+View(jake_df)
+```
+### PARTICIPANT 3: Joshua Core
+```{r}
+participant_3 <- rep("Joshua Core", 50)
+
+treatment_3 <- rep(c("one to one", "one to many", "one to one",
+                     "one to many", "one to one", "one to one",
+                     "one to many", "one to many", "one to one",
+                     "one to many"), each = 5)
+
+responses_3 <- c(0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 1, 0,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 0, 0, 0, 0, 1,
+                 1, 1, 0, 0, 1,
+                 0, 0, 0, 0, 0,
+                 1, 0, 1, 0, 1)
+length(responses_3)
+
+grade_3 <- responses_3 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 3,2,6,9,7,5,4,8,10,1
+order_3 <- rep(c(10, 2, 1, 7, 6, 3, 5, 8, 4, 9), each = 5)
+
+josh_df <- data.frame(participant = participant_3,
+                      question,
+                      treatment = treatment_3,
+                      response = responses_3,
+                      grade = grade_3,
+                      order = order_3)
+View(josh_df)
+```
+### PARTICIPANT 4: Emanuelle Alemar
+```{r}
+participant_4 <- rep("Emanuelle Alemar", 50)
+
+treatment_4 <- rep(c("one to many", "one to one", "one to many",
+                     "one to one", "one to many", "one to many",
+                     "one to one", "one to one", "one to many",
+                     "one to one"), each = 5)
+
+responses_4 <- c(0, 0, 1, 0, 0,
+                 0, 1, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 1, 0,
+                 0, 1, 0, 0, 0,
+                 1, 1, 1, 0, 0,
+                 0, 0, 0, 0, 1,
+                 0, 1, 0, 0, 0,
+                 1, 0, 0, 1, 1,
+                 0, 0, 1, 0, 0)
+
+grade_4 <- responses_4 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 7,4,5,10,8,6,1,2,9,3
+order_4 <- rep(c(7, 8, 10, 2, 3, 6, 1, 5, 9, 4), each = 5)
+
+emanuelle_df <- data.frame(participant = participant_4,
+                           question,
+                           treatment = treatment_4,
+                           response = responses_4,
+                           grade = grade_4,
+                           order = order_4)
+View(emanuelle_df)
+```
+### PARTICIPANT 5: Mishal McNeill
+```{r}
+participant_5 <- rep("Mishal McNeill", 50)
+
+treatment_5 <- rep(c("one to one", "one to many", "one to many",
+                     "one to many", "one to many", "one to many",
+                     "one to one", "one to one", "one to one",
+                     "one to one"), each = 5)
+
+responses_5 <- c(0, 0, 0, 0, 0,
+                 0, 1, 0, 0, 1,
+                 1, 1, 1, 1, 0,
+                 1, 0, 0, 1, 0,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 0,
+                 1, 1, 0, 0, 1,
+                 1, 0, 0, 1, 1,
+                 1, 0, 1, 0, 1)
+
+grade_5 <- responses_5 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 4,6,10,5,1,8,9,2,7,3
+order_5 <- rep(c(5, 8, 10, 1, 4, 2, 9, 6, 7, 3), each = 5)
+
+mishal_df <- data.frame(participant = participant_5,
+                        question,
+                        treatment = treatment_5,
+                        response = responses_5,
+                        grade = grade_5,
+                        order = order_5)
+View(mishal_df)
+```
+### PARTICIPANT 6: Jonathan Che
+```{r}
+participant_6 <- rep("Jonathan Che", 50)
+
+treatment_6 <- rep(c("one to many", "one to one", "one to one",
+                     "one to one", "one to one", "one to one",
+                     "one to many", "one to many", "one to many",
+                     "one to many"), each = 5)
+
+responses_6 <- c(1, 0, 1, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 1, 0, 1, 1,
+                 0, 0, 0, 1, 0,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 1,
+                 1, 1, 0, 0, 1,
+                 1, 0, 0, 0, 0,
+                 1, 0, 1, 0, 1)
+
+grade_6 <- responses_6 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 9,7,6,1,5,8,4,10,3,2
+order_6 <- rep(c(4, 10, 9, 7, 5, 3, 2, 6, 1, 8), each = 5)
+
+jonathan_df <- data.frame(participant = participant_6,
+                          question,
+                          treatment = treatment_6,
+                          response = responses_6,
+                          grade = grade_6,
+                          order = order_6)
+View(jonathan_df)
+```
+### PARTICIPANT 7: Chris Bryant
+```{r}
+participant_7 <- rep("Chris Bryant", 50)
+
+treatment_7 <- rep(c("one to one", "one to many", "one to many",
+                     "one to one", "one to many", "one to many",
+                     "one to many", "one to one", "one to one",
+                     "one to one"), each = 5)
+
+responses_7 <- c(0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 0, 1, 0,
+                 0, 0, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 1,
+                 1, 0, 0, 0, 1,
+                 0, 0, 0, 0, 0,
+                 1, 0, 1, 0, 1)
+
+grade_7 <- responses_7 == answer_key
+
+# 1,2,3,4,5,6,7,8,9,10
+# 5,8,7,1,6,4,10,3,2,9
+order_7 <- rep(c(4, 9, 8, 6, 1, 5, 3, 2, 10, 7), each = 5)
+
+chris_df <- data.frame(participant = participant_7,
+                       treatment = treatment_7,
+                       question,
+                       response = responses_7,
+                       grade = grade_7,
+                       order = order_7)
+View(chris_df)
+```
+### PARTICIPANT 8: Kristyn Frisque
+```{r}
+participant_8 <- rep("Kristyn Frisque", 50)
+
+treatment_8 <- rep(c("one to many", "one to one", "one to one",
+                     "one to many", "one to one", "one to one",
+                     "one to one", "one to many", "one to many",
+                     "one to many"), each = 5)
+
+# responses_8
+
+# grade_8 <- responses_8 == question
+
+# 1,2,3,4,5,6,7,8,9,10
+# 10,7,2,5,3,9,8,1,4,6
+order_8 <- rep(c(8, 3, 5, 9, 4, 10, 2, 7, 6, 1), each = 5)
+
+kristyn_df <- data.frame(participant = participant_8,
+                         treatment = treatment_8,
+                         question,
+                         order = order_8)
+View(kristyn_df)
+```
+### PARTICIPANT 9: 
+```{r}
+# participant_9
+
+treatment_9 <- rep(c("one to many", "one to one", "one to many",
+                     "one to many", "one to many", "one to many",
+                     "one to one", "one to one", "one to one",
+                     "one to one"), each = 5)
+# responses_9
+
+# grade_9 <- responses_9 == question
+
+# 1,2,3,4,5,6,7,8,9,10
+# 1,9,8,6,10,3,7,5,2,4
+order_9 <- rep(c(1, 9, 6, 10, 8, 4, 7, 3, 2, 5))
+
+nine_df <- data.frame(treatment = treatment_9,
+                      question,
+                      order = order_9)
+```
+### PARTICIPANT 10:
+```{r}
+# participant_10
+
+treatment_10 <- rep(c("one to one", "one to many", "one to one",
+                      "one to one", "one to one", "one to one",
+                      "one to many", "one to many", "one to many",
+                      "one to many"), each = 5)
+
+# responses_10
+
+# grade_10 <- responses_10 == question
+
+# 1,2,3,4,5,6,7,8,9,10
+# 10,1,4,9,8,2,6,5,7,3
+order_10 <- rep(c(2, 6, 10, 3, 8, 7, 9, 5, 4, 1), each = 5)
+
+ten_df <- data.frame(treatment = treatment_10,
+                     question,
+                     order = order_10)
+```
+
+
+### using rbind() to stack the individual participant data frames
+```{r}
+fingerprint_df <- rbind(sarah_df, jake_df, josh_df, 
+                        emanuelle_df, mishal_df, jonathan_df,
+                        chris_df)
+View(fingerprint_df)
+
+save(fingerprint_df, file = "fingerprint_doe.RData")
+
+# eventually we should save as .RData
+```
+
