@@ -419,14 +419,14 @@ niccolo_df <- data.frame(participant = participant_10,
 
 ### using rbind() to stack the individual participant data frames
 ```{r}
-fingerprint_df <- rbind(sarah_df, jake_df, josh_df, 
+exp_fingerprint_data <- rbind(sarah_df, jake_df, josh_df, 
                         emanuelle_df, mishal_df, jonathan_df,
                         chris_df, kristyn_df, cieran_df,
                         niccolo_df)
-View(fingerprint_df)
+View(exp_fingerprint_data)
 
 # this line will save as dataframe, as a .RData
-save(fingerprint_df, file = "fingerprint_doe.RData")
+save(exp_fingerprint_data, file = "exp_fingerprint_data.RData")
 
 # eventually we should save as .RData
 ```
