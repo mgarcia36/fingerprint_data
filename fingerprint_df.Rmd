@@ -109,7 +109,7 @@ sarah_df <- data.frame(participant = participant_1,
                        response = responses_1,
                        grade = grade_1,
                        order = order_1)
-View(sarah_df)
+
 ```
 ### PARTICIPANT 2: Jake Howell
 ```{r}
@@ -145,7 +145,7 @@ jake_df <- data.frame(participant = participant_2,
                       response = responses_2,
                       grade = grade_2,
                       order = order_2)
-View(jake_df)
+
 ```
 ### PARTICIPANT 3: Joshua Core
 ```{r}
@@ -180,7 +180,7 @@ josh_df <- data.frame(participant = participant_3,
                       response = responses_3,
                       grade = grade_3,
                       order = order_3)
-View(josh_df)
+
 ```
 ### PARTICIPANT 4: Emanuelle Alemar
 ```{r}
@@ -214,7 +214,7 @@ emanuelle_df <- data.frame(participant = participant_4,
                            response = responses_4,
                            grade = grade_4,
                            order = order_4)
-View(emanuelle_df)
+
 ```
 ### PARTICIPANT 5: Mishal McNeill
 ```{r}
@@ -248,7 +248,7 @@ mishal_df <- data.frame(participant = participant_5,
                         response = responses_5,
                         grade = grade_5,
                         order = order_5)
-View(mishal_df)
+
 ```
 ### PARTICIPANT 6: Jonathan Che
 ```{r}
@@ -282,7 +282,7 @@ jonathan_df <- data.frame(participant = participant_6,
                           response = responses_6,
                           grade = grade_6,
                           order = order_6)
-View(jonathan_df)
+
 ```
 ### PARTICIPANT 7: Chris Bryant
 ```{r}
@@ -316,7 +316,6 @@ chris_df <- data.frame(participant = participant_7,
                        response = responses_7,
                        grade = grade_7,
                        order = order_7)
-View(chris_df)
 ```
 ### PARTICIPANT 8: Kristyn Frisque
 ```{r}
@@ -327,9 +326,18 @@ treatment_8 <- rep(c("one to many", "one to one", "one to one",
                      "one to one", "one to many", "one to many",
                      "one to many"), each = 5)
 
-# responses_8
+responses_8 <- c(0, 0, 1, 0, 0,
+                 0, 0, 0, 0, 0,
+                 1, 0, 0, 0, 0,
+                 1, 0, 0, 0, 1,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 0, 0, 0, 0, 1,
+                 1, 1, 0, 0, 0,
+                 0, 0, 0, 0, 0,
+                 0, 0, 1, 0, 1)
 
-# grade_8 <- responses_8 == question
+grade_8 <- responses_8 == question
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,7,2,5,3,9,8,1,4,6
@@ -338,48 +346,73 @@ order_8 <- rep(c(8, 3, 5, 9, 4, 10, 2, 7, 6, 1), each = 5)
 kristyn_df <- data.frame(participant = participant_8,
                          treatment = treatment_8,
                          question,
+                         response = responses_8,
+                         grade = grade_8,
                          order = order_8)
-View(kristyn_df)
 ```
-### PARTICIPANT 9: 
+### PARTICIPANT 9: Cieran Evans
 ```{r}
-# participant_9
+participant_9 <- rep("Cieran Evans", 50)
 
 treatment_9 <- rep(c("one to many", "one to one", "one to many",
                      "one to many", "one to many", "one to many",
                      "one to one", "one to one", "one to one",
                      "one to one"), each = 5)
-# responses_9
+responses_9 <- c(1, 0, 0, 0, 1,
+                 0, 0, 0, 0, 0,
+                 1, 1, 1, 1, 1,
+                 1, 0, 0, 1, 1,
+                 0, 1, 0, 0, 0,
+                 0, 1, 1, 0, 0,
+                 1, 0, 0, 0, 1,
+                 1, 1, 0, 0, 1,
+                 0, 0, 0, 0, 1,
+                 1, 0, 1, 0, 1)
 
-# grade_9 <- responses_9 == question
+grade_9 <- responses_9 == question
 
 # 1,2,3,4,5,6,7,8,9,10
 # 1,9,8,6,10,3,7,5,2,4
 order_9 <- rep(c(1, 9, 6, 10, 8, 4, 7, 3, 2, 5))
 
-nine_df <- data.frame(treatment = treatment_9,
+cieran_df <- data.frame(participant = participant_9,
+                      treatment = treatment_9,
                       question,
+                      response = responses_9,
+                      grade = grade_9,
                       order = order_9)
 ```
-### PARTICIPANT 10:
+### PARTICIPANT 10: Niccolo Dalmasso
 ```{r}
-# participant_10
+participant_10 <- rep("Niccolo Dalmasso", 50)
 
 treatment_10 <- rep(c("one to one", "one to many", "one to one",
                       "one to one", "one to one", "one to one",
                       "one to many", "one to many", "one to many",
                       "one to many"), each = 5)
 
-# responses_10
+responses_10 <- c(0, 1, 0, 0, 0,
+                  0, 0, 0, 1, 0,
+                  1, 1, 1, 0, 0,
+                  0, 0, 0, 1, 1,
+                  0, 1, 0, 0, 0,
+                  0, 1, 1, 0, 0,
+                  1, 0, 0, 0, 0,
+                  1, 1, 0, 0, 1,
+                  0, 0, 0, 1, 1,
+                  1, 0, 1, 0, 0)
 
-# grade_10 <- responses_10 == question
+grade_10 <- responses_10 == question
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,1,4,9,8,2,6,5,7,3
 order_10 <- rep(c(2, 6, 10, 3, 8, 7, 9, 5, 4, 1), each = 5)
 
-ten_df <- data.frame(treatment = treatment_10,
+niccolo_df <- data.frame(participant = participant_10,
+                     treatment = treatment_10,
                      question,
+                     grade = grade_10,
+                     
                      order = order_10)
 ```
 
@@ -388,9 +421,11 @@ ten_df <- data.frame(treatment = treatment_10,
 ```{r}
 fingerprint_df <- rbind(sarah_df, jake_df, josh_df, 
                         emanuelle_df, mishal_df, jonathan_df,
-                        chris_df)
+                        chris_df, kristyn_df, cieran_df,
+                        niccolo_df)
 View(fingerprint_df)
 
+# this line will save as dataframe, as a .RData
 save(fingerprint_df, file = "fingerprint_doe.RData")
 
 # eventually we should save as .RData
