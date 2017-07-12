@@ -91,7 +91,7 @@ length(responses_1)
 
 # grade_1 is col 5, participant grade per question (T/F)
 # set == and if participant answered correctly will output TRUE 
-grade_1 <- responses_1 == answer_key
+grade_1 <- as.numeric(responses_1 == answer_key)
 
 # order_1 is col 6, order of tests administered
 # rep() to repeat 5 times per test
@@ -133,7 +133,7 @@ responses_2 <- c(0, 0, 0, 1, 0,
 length(responses_2)
 
 
-grade_2 <- responses_2 == answer_key
+grade_2 <- as.numeric(responses_2 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 1,6,3,7,5,8,9,2,10,4
@@ -168,7 +168,7 @@ responses_3 <- c(0, 0, 0, 0, 0,
                  1, 0, 1, 0, 1)
 length(responses_3)
 
-grade_3 <- responses_3 == answer_key
+grade_3 <- as.numeric(responses_3 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 3,2,6,9,7,5,4,8,10,1
@@ -202,7 +202,7 @@ responses_4 <- c(0, 0, 1, 0, 0,
                  1, 0, 0, 1, 1,
                  0, 0, 1, 0, 0)
 
-grade_4 <- responses_4 == answer_key
+grade_4 <- as.numeric(responses_4 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 7,4,5,10,8,6,1,2,9,3
@@ -236,7 +236,7 @@ responses_5 <- c(0, 0, 0, 0, 0,
                  1, 0, 0, 1, 1,
                  1, 0, 1, 0, 1)
 
-grade_5 <- responses_5 == answer_key
+grade_5 <- as.numeric(responses_5 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 4,6,10,5,1,8,9,2,7,3
@@ -270,7 +270,7 @@ responses_6 <- c(1, 0, 1, 0, 0,
                  1, 0, 0, 0, 0,
                  1, 0, 1, 0, 1)
 
-grade_6 <- responses_6 == answer_key
+grade_6 <- as.numeric(responses_6 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 9,7,6,1,5,8,4,10,3,2
@@ -304,7 +304,7 @@ responses_7 <- c(0, 0, 0, 0, 0,
                  0, 0, 0, 0, 0,
                  1, 0, 1, 0, 1)
 
-grade_7 <- responses_7 == answer_key
+grade_7 <- as.numeric(responses_7 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 5,8,7,1,6,4,10,3,2,9
@@ -337,7 +337,7 @@ responses_8 <- c(0, 0, 1, 0, 0,
                  0, 0, 0, 0, 0,
                  0, 0, 1, 0, 1)
 
-grade_8 <- responses_8 == answer_key
+grade_8 <- as.numeric(responses_8 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,7,2,5,3,9,8,1,4,6
@@ -369,7 +369,7 @@ responses_9 <- c(1, 0, 0, 0, 1,
                  0, 0, 0, 0, 1,
                  1, 0, 1, 0, 1)
 
-grade_9 <- responses_9 == answer_key
+grade_9 <- as.numeric(responses_9 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 1,9,8,6,10,3,7,5,2,4
@@ -402,7 +402,7 @@ responses_10 <- c(0, 1, 0, 0, 0,
                   0, 0, 0, 1, 1,
                   1, 0, 1, 0, 0)
 
-grade_10 <- responses_10 == answer_key
+grade_10 <- as.numeric(responses_10 == answer_key)
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,1,4,9,8,2,6,5,7,3
