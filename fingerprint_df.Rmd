@@ -337,7 +337,7 @@ responses_8 <- c(0, 0, 1, 0, 0,
                  0, 0, 0, 0, 0,
                  0, 0, 1, 0, 1)
 
-grade_8 <- responses_8 == question
+grade_8 <- responses_8 == answer_key
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,7,2,5,3,9,8,1,4,6
@@ -369,7 +369,7 @@ responses_9 <- c(1, 0, 0, 0, 1,
                  0, 0, 0, 0, 1,
                  1, 0, 1, 0, 1)
 
-grade_9 <- responses_9 == question
+grade_9 <- responses_9 == answer_key
 
 # 1,2,3,4,5,6,7,8,9,10
 # 1,9,8,6,10,3,7,5,2,4
@@ -402,7 +402,7 @@ responses_10 <- c(0, 1, 0, 0, 0,
                   0, 0, 0, 1, 1,
                   1, 0, 1, 0, 0)
 
-grade_10 <- responses_10 == question
+grade_10 <- responses_10 == answer_key
 
 # 1,2,3,4,5,6,7,8,9,10
 # 10,1,4,9,8,2,6,5,7,3
@@ -411,8 +411,8 @@ order_10 <- rep(c(2, 6, 10, 3, 8, 7, 9, 5, 4, 1), each = 5)
 niccolo_df <- data.frame(participant = participant_10,
                      treatment = treatment_10,
                      question,
+                     response = responses_10,
                      grade = grade_10,
-                     
                      order = order_10)
 ```
 
