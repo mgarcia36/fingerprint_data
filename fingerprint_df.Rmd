@@ -139,6 +139,7 @@ grade_2 <- as.numeric(responses_2 == answer_key)
 # 1,6,3,7,5,8,9,2,10,4
 order_2 <- rep(c(1, 8, 3, 10, 5, 2, 4, 6, 7, 9), each = 5)
 
+
 jake_df <- data.frame(participant = participant_2,
                       question,
                       treatment = treatment_2,
@@ -173,6 +174,8 @@ grade_3 <- as.numeric(responses_3 == answer_key)
 # 1,2,3,4,5,6,7,8,9,10
 # 3,2,6,9,7,5,4,8,10,1
 order_3 <- rep(c(10, 2, 1, 7, 6, 3, 5, 8, 4, 9), each = 5)
+
+
 
 josh_df <- data.frame(participant = participant_3,
                       question,
@@ -425,9 +428,14 @@ exp_fingerprint_data <- rbind(sarah_df, jake_df, josh_df,
                         niccolo_df)
 View(exp_fingerprint_data)
 
+# eventually we should save as .RData
+
+# ADDING ON EXPERIENCE LEVEL TO DF
+experience <- rep(c(1, 0, 2, 0, 1, 0, 2, 1, 0, 0), each = 50)
+length(experience)
+exp_fingerprint_data <- cbind(exp_fingerprint_data, experience)
+
 # this line will save as dataframe, as a .RData
 save(exp_fingerprint_data, file = "exp_fingerprint_data.RData")
-
-# eventually we should save as .RData
 ```
 
